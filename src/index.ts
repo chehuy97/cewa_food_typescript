@@ -1,4 +1,4 @@
- import express, {Express} from 'express';
+import express, {Express} from 'express';
 import {logging, routes, production} from './startups';
 import {EnvironmentVariable} from './config'
 
