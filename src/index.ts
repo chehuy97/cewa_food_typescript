@@ -1,10 +1,11 @@
 import express, {Express} from 'express';
-import {logging, routes, production} from './startups';
+import {logging, database, routes, production} from './startups';
 import {EnvironmentVariable} from './config'
 
 const app:Express = express();
 
 logging();
+database()
 production(app);
 routes(app);
 
