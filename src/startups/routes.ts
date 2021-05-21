@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { foodRouter } from '../routes/food';
 import { error } from '../middlewares/error';
+import { storeRouter } from '../routes/store';
 
 export const routes = (app: Express) => {
    app.use(cors({origin: '*', credentials: true}));
@@ -24,7 +25,8 @@ export const routes = (app: Express) => {
       next();
     });
 
-    app.use('/foods', foodRouter)
+    app.use('/api/foods', foodRouter)
+    app.use('/api/stores',storeRouter)
 
     app.use(error)
 

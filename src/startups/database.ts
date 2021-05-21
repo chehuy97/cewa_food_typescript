@@ -5,7 +5,9 @@ const dbConnection = 'mongodb+srv://dbCewa:huy9101997@cewa.nvyu1.mongodb.net/myF
 
 export const database = () => {
     mongoose.connect(dbConnection,{
-        useNewUrlParser:true
+        useCreateIndex:true,
+        useNewUrlParser:true,
+        useUnifiedTopology:true
     }).then(() => {
         var db = mongoose.connection
         if(db){
