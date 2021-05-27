@@ -1,10 +1,8 @@
 import { EnvironmentVariable } from '../config'
 import mongoose from 'mongoose'
 
-const dbConnection = 'mongodb+srv://dbCewa:huy9101997@cewa.nvyu1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-
 export const database = () => {
-    mongoose.connect(dbConnection,{
+    mongoose.connect(EnvironmentVariable.DATABASE_CONNECTION || "",{
         useCreateIndex:true,
         useNewUrlParser:true,
         useUnifiedTopology:true
