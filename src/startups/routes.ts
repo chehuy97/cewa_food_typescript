@@ -24,10 +24,12 @@ export const routes = (app: Express) => {
       );
       next();
     });
-
+    app.use('/',(req: Request, res: Response) => {
+      res.send('Welcom eto Cewa food.');
+   })
     app.use('/api/foods', foodRouter)
     app.use('/api/stores',storeRouter)
-
+      
     app.use(error)
 
 
