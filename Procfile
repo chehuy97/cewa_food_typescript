@@ -1,1 +1,1 @@
-web: npx nodemon src/index.ts
+web: npm run dev

@@ -9,7 +9,7 @@ database()
 production(app);
 routes(app);
 
-const port: string | number = EnvironmentVariable.PORT || 3000;
+const port: string | number = EnvironmentVariable.PORT || 5000;
 
 const server = app.listen(port, () => {
    console.log(`Listening on port ${port}`);

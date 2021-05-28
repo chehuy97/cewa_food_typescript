@@ -2,7 +2,7 @@ import { EnvironmentVariable } from '../config'
 import mongoose from 'mongoose'
 
 export const database = () => {
-    mongoose.connect(EnvironmentVariable.DATABASE_CONNECTION || "",{
+    mongoose.connect(EnvironmentVariable.DATABASE_CONNECTION || "localhost",{
         useCreateIndex:true,
         useNewUrlParser:true,
         useUnifiedTopology:true
