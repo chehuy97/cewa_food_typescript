@@ -1,10 +1,8 @@
 import express, {Express} from 'express';
 import {logging, database, routes, production} from './startups';
 import {EnvironmentVariable} from './config'
-import dotenv from 'dotenv'
 
 const app:Express = express();
-dotenv.config()
 
 logging();
 database()
