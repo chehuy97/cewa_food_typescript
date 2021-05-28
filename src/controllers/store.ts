@@ -9,9 +9,7 @@ const Store = mongoose.model<IStore>('store', storeSchema, 'store')
 
 export const getStores = async (req: Request, res: Response) => {
     try {
-        // let searchValue = req.body as {search:string}
-        let search  = req.query.search
-        // console.log("Search value is "+ searchValue.search);  
+        let search  = req.params.search 
         console.log("params is " + search);
         
         let result = await Store.find({$or:[

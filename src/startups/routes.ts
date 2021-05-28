@@ -25,7 +25,7 @@ export const routes = (app: Express) => {
       );
       next();
     });
-    app.use('/',homeRouter);
+    app.use('/',homeRouter)
     app.use('/api/foods', foodRouter)
     app.use('/api/stores',storeRouter)
       
