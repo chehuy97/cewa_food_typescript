@@ -25,9 +25,7 @@
     "mongoose": "^5.12.10",
     "morgan": "^1.10.0",
     "normalize-mongoose": "0.0.1",
-    "winston": "^3.3.3"
-  },
-  "devDependencies": {
+    "winston": "^3.3.3",
     "@types/compression": "^1.7.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
