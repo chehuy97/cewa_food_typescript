@@ -10,12 +10,12 @@ const Store = mongoose.model<IStore>('store', storeSchema, 'store')
 export const getStores = async (req: Request, res: Response) => {
     try {
         let search  = req.params.search 
-        console.log("params is " + search);
-        
         let result = await Store.find({$or:[
             {name:{$regex: '.*' + search + '.*' }},
             {address:{$regex: '.*' + search + '.*' }},
-        ]}).exec()
+        ]}).populate('foods').exec()
+        // let result = await Store.findOne({_id:'60b5b36edb089251ca5c1141'}).exec()
+        // console.log("name is "+result?.name);
         SuccessResponse(res,result)
     } catch (error) {
         BadRequest(res,error)

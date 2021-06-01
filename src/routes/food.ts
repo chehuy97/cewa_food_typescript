@@ -1,6 +1,8 @@
 import express, { Router} from 'express';
-import { getAllFoods } from '../controllers'
+import { getAllFoods, addFoodInStore } from '../controllers'
 
 export const foodRouter:Router = express.Router()
 
-foodRouter.get('/', getAllFoods)
+foodRouter.route('/').post(addFoodInStore)
+
+foodRouter.get('/:storeId', getAllFoods)
