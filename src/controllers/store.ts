@@ -13,7 +13,7 @@ export const getStores = async (req: Request, res: Response) => {
         let result = await Store.find({$or:[
             {name:{$regex: '.*' + search + '.*' }},
             {address:{$regex: '.*' + search + '.*' }},
-        ]}).populate('foods').exec()
+        ]}).exec()
         // let result = await Store.findOne({_id:'60b5b36edb089251ca5c1141'}).exec()
         // console.log("name is "+result?.name);
         SuccessResponse(res,result)

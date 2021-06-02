@@ -8,11 +8,10 @@ import mongoose from 'mongoose'
 const Food = mongoose.model<IFood>('food', foodSchema, 'food')
 const Store = mongoose.model<IStore>('store',storeSchema,'store')
 
-export const getAllFoods = async (req:Request,res:Response) => {
+export const getAllFoodsInStore = async (req:Request,res:Response) => {
     try {
         let id = req.params.storeId
-        let data = await Food.find({store: id}).populate('store').exec()
-        
+        let data = await Store.findOne({_id: id}).populate('foods').exec()
         SuccessResponse(res,data)
     } catch(err){
         BadRequest(res, err)
