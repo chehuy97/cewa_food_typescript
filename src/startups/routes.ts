@@ -7,6 +7,7 @@ import { foodRouter } from '../routes/food';
 import { error } from '../middlewares/error';
 import { storeRouter } from '../routes/store';
 import { homeRouter } from '../routes/home';
+import { authRouter } from '../routes/auth';
 
 export const routes = (app: Express) => {
    app.use(cors({origin: '*', credentials: true}));
@@ -26,6 +27,7 @@ export const routes = (app: Express) => {
       next();
     });
     app.use('/',homeRouter)
+    app.use('/api/auth', authRouter)
     app.use('/api/foods', foodRouter)
     app.use('/api/stores',storeRouter)
       
