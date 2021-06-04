@@ -37,7 +37,7 @@ export const login = async (req: Request, res: Response) => {
 }
 
 export const refresh_token = async (req:Request, res:Response) => {
-    let token = req.headers['access-token'] as string
+    let token = req.body.refresh_token
     if (token){
         try {
             let decoded = await verify_token(token, REFRESH_TOKEN_SECRET) as any
@@ -47,7 +47,7 @@ export const refresh_token = async (req:Request, res:Response) => {
             
             let new_access_token = await generate_token(user, ACCESS_TOKEN_SECRET, ACCESS_TOKEN_LIFE)
     
-            SuccessResponse(res, new_access_token)
+            SuccessResponse(res, {new_access_token})
         } catch(err) {
             BadRequest(res, 'Wrong refresh token')
         }
