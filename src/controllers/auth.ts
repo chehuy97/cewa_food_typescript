@@ -26,8 +26,9 @@ export const login = async (req: Request, res: Response) => {
         if(user){            
             let access_token = await generate_token(user as IUser, ACCESS_TOKEN_SECRET, ACCESS_TOKEN_LIFE)
             let refresh_token = await generate_token(user as IUser, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_LIFE)
+            let user_id = user.id
         
-            SuccessResponse(res,{access_token, refresh_token})
+            SuccessResponse(res,{user_id, access_token, refresh_token})
         } else {
             NotFound(res, "Account is wrong")
         }

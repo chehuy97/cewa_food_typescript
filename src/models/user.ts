@@ -1,4 +1,5 @@
-import { Schema } from 'mongoose'
+import { Schema, SchemaTypes } from 'mongoose'
+import { IStore } from './store'
 const normalize = require('normalize-mongoose')
 
 export const userSchema:Schema = new Schema({
@@ -10,7 +11,8 @@ export const userSchema:Schema = new Schema({
         type: String,
         enum: ['male', 'female']
     },
-    birthday:String
+    birthday:String,
+    favorite_store: {type:SchemaTypes.ObjectId, ref: 'store'}
 })
 
 export interface IUser extends Document {
@@ -20,7 +22,8 @@ export interface IUser extends Document {
     name:string,
     address:string,
     gender:string,
-    birthday:string
+    birthday:string,
+    favorite_store:IStore[]
 }
 
 export interface UserLogin {

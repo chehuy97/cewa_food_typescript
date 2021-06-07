@@ -1,5 +1,6 @@
 import { Schema, SchemaTypes, Document, SchemaType } from 'mongoose'
 import { IFood } from './food'
+import { IUser } from './user'
 const normalize = require('normalize-mongoose')
 
 export const storeSchema:Schema = new Schema({
@@ -11,7 +12,8 @@ export const storeSchema:Schema = new Schema({
         type:String,
         default:'https://images.foody.vn/res/g27/263004/prof/s1242x600/beauty-upload-api-image-200805140406.jpeg'
     },
-    foods:[{type: Schema.Types.ObjectId, ref:'food'}]
+    foods:[{type: Schema.Types.ObjectId, ref:'food'}],
+    favorite: [{type: SchemaTypes.ObjectId, ref: 'user'}]
 })
 
 export interface IStore extends Document {
@@ -20,7 +22,8 @@ export interface IStore extends Document {
     type:string,
     rating:string,
     image:string,
-    foods:IFood[]
+    foods:IFood[],
+    favorite: IUser[]
 }
 
 export interface StoreRequest {
