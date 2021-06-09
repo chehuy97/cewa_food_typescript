@@ -10,7 +10,6 @@ export const is_auth = async (req: Request, res: Response, next: () => void) => 
 
     if (tokenFromClient) {
         try {
-            console.log("Original token is " + tokenFromClient);
             let stringList = tokenFromClient.split(" ")
             if (stringList[0].toLowerCase() == "bearer") {
                 let realToken = stringList[1]

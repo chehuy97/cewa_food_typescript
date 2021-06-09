@@ -53,3 +53,20 @@ export const saveFavoriteStore = async (req: Request, res: Response) => {
         BadRequest(res, err)
     }
 }
+
+export const show_store_favorites = async (req:Request, res: Response) => {
+    try{ 
+        let accountId = req.params.id
+        
+        let user = await User.findById(accountId).populate('favorite_store', 'id name address type rating').exec()
+        if(user){
+            console.log("user is "+user);
+            let stores = user.favorite_store
+            SuccessResponse(res, stores)
+        } else {
+            BadRequest(res,"User not found")
+        }
+    } catch (err) {
+        BadRequest(res, err)
+    }
+}

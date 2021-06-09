@@ -14,20 +14,19 @@ const User = mongoose.model<IUser>('user', userSchema, 'user')
 
 export const login = async (req: Request, res: Response) => {
     try {
+
         let loginInfo = req.body as UserLogin
-        console.log("Login info is "+ loginInfo.email);
+        console.log("Login info is "+ loginInfo.email+ ' and '+loginInfo.password);
         
         let user = await User.findOne({$and:[
             {email:{$eq:loginInfo.email}},
             {password:{$eq: loginInfo.password}}
             ]
-        }).exec()
-        
+        }).exec()        
         if(user){            
             let access_token = await generate_token(user as IUser, ACCESS_TOKEN_SECRET, ACCESS_TOKEN_LIFE)
             let refresh_token = await generate_token(user as IUser, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_LIFE)
             let user_id = user.id
-        
             SuccessResponse(res,{user_id, access_token, refresh_token})
         } else {
             NotFound(res, "Account is wrong")
