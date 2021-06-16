@@ -6,7 +6,7 @@ import { storeSchema } from '../models';
 export const storeRouter: Router = express.Router()
 
 storeRouter.route('/').post(addNewStore)
- storeRouter.route('/:search').get(getStores)
+storeRouter.route('/:search').get(getStores)
 
 storeRouter.use(is_auth)
 

@@ -29,7 +29,7 @@ export const login = async (req: Request, res: Response) => {
             let user_id = user.id
             SuccessResponse(res,{user_id, access_token, refresh_token})
         } else {
-            NotFound(res, "Account is wrong")
+            NotFound(res, "Wrong email or password")
         }
     } catch (err) {   
         BadRequest(res, err)
@@ -58,11 +58,23 @@ export const refresh_token = async (req:Request, res:Response) => {
 
 export const register_account = async (req:Request, res:Response) => {
     try {
-        const { ...storeRequest } = req.body as IUser
-        var newStore = new User(storeRequest)
-        const result = await newStore.save()
-        SuccessResponse(res, result, 201)
+        const { ...userRequest } = req.body as IUser
+        console.log('register nek');
+        
+
+        let checkUserExist = await User.find({email:userRequest.email}).exec()
+        if (checkUserExist.length == 0) {
+            console.log('account not exist nek');
+            var newStore = new User(userRequest)
+            const result = await newStore.save()
+            SuccessResponse(res, result, 201)
+        } else {
+            console.log('account exist nek');
+            BadRequest(res, 'Account is existed')
+        }
+
     } catch (err) {
-        BadRequest(res, err)
+        console.log('account fail nek');
+        BadRequest(res, "cannot register")
     }
 }
