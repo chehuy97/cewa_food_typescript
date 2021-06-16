@@ -9,6 +9,7 @@ import { storeRouter } from '../routes/store';
 import { homeRouter } from '../routes/home';
 import { authRouter } from '../routes/auth';
 import { is_auth } from '../middlewares/auth'
+import { noteRouter } from '../routes/note.route';
 const accessRouter = express.Router()
 
 export const routes = (app: Express) => {
@@ -30,6 +31,7 @@ export const routes = (app: Express) => {
     });
     app.use('/',homeRouter)
     app.use('/api/auth', authRouter)
+    app.use('/api/note',noteRouter)
     app.use('/api/foods', foodRouter)
     //accessRouter.use(is_auth)
     app.use('/api/stores',storeRouter)
