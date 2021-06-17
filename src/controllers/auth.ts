@@ -4,7 +4,7 @@ import { IUser, userSchema, UserLogin } from '../models'
 import mongoose from 'mongoose'
 import { generate_token, verify_token } from '../helpers/jwt.helper'
 
-const ACCESS_TOKEN_LIFE = '2h'
+const ACCESS_TOKEN_LIFE = '48h'
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'chequanghuy.9101997'
 const REFRESH_TOKEN_LIFE = '3650d'
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'chehuy.refresh.1997'
