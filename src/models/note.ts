@@ -1,3 +1,4 @@
+import { IUser } from './user';
 import { Schema, SchemaTypes, Document, SchemaType } from 'mongoose'
 const normalize = require('normalize-mongoose')
 
@@ -8,16 +9,18 @@ export const noteSchema:Schema = new Schema({
         type: String,
         default: '#fff380'
     },
-    account_id: {
+    users: [{
         type: SchemaTypes.ObjectId,
-        ref: 'user'
-    }
+        ref: 'user',
+        default: []
+    }]
 })
 
 export interface INote extends Document {
+    id:string,
     title:string,
     content:string,
-    account_id:string
+    users:IUser[]
 }
 
 

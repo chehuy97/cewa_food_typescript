@@ -13,7 +13,7 @@ const accessRouter = express.Router()
 
 export const routes = (app: Express) => {
    app.use(cors({origin: '*', credentials: true}));
-   app.use(bodyParser.urlencoded({extended: true}));
+   app.use(bodyParser.urlencoded({extended: true})); 
    app.use(bodyParser.json());
    app.use(express.json());
    app.use(morgan('tiny'));

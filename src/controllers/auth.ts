@@ -4,7 +4,7 @@ import { IUser, userSchema, UserLogin } from '../models'
 import mongoose from 'mongoose'
 import { generate_token, verify_token } from '../helpers/jwt.helper'
 
-const ACCESS_TOKEN_LIFE = '48h'
+const ACCESS_TOKEN_LIFE = '240h'
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'chequanghuy.9101997'
 const REFRESH_TOKEN_LIFE = '3650d'
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'chehuy.refresh.1997'
@@ -22,7 +22,9 @@ export const login = async (req: Request, res: Response) => {
             {email:{$eq:loginInfo.email}},
             {password:{$eq: loginInfo.password}}
             ]
-        }).exec()        
+        }).exec()
+        console.log("find user ok");
+                
         if(user){            
             let access_token = await generate_token(user as IUser, ACCESS_TOKEN_SECRET, ACCESS_TOKEN_LIFE)
             let refresh_token = await generate_token(user as IUser, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_LIFE)

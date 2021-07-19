@@ -1,3 +1,4 @@
+import { INote } from './note';
 import { Schema, SchemaTypes } from 'mongoose'
 const normalize = require('normalize-mongoose')
 
@@ -11,7 +12,7 @@ export const userSchema:Schema = new Schema({
         enum: ['male', 'female']
     },
     birthday:String,
-    favorite_store: {type:SchemaTypes.ObjectId, ref: 'store'}
+    notes: [{type:SchemaTypes.ObjectId, ref: 'note', default: []}]
 })
 
 export interface IUser extends Document {
@@ -22,6 +23,7 @@ export interface IUser extends Document {
     address:string,
     gender:string,
     birthday:string,
+    notes: INote[]
 }
 
 export interface UserLogin {
